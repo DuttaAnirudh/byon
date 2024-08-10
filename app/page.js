@@ -4,7 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "./_components/Header";
 import { dancingScript } from "./layout";
+import { applicationDetails } from "./_lib/nylas";
 export default function Home() {
+  const detailsApp = applicationDetails;
+
   return (
     <main className="flex flex-col items-start min-h-screen pt-8 relative">
       <Header />
