@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${oswald.className} bg-black text-n-2`}>
-        <div className="max-w-[1440px] mx-auto">{children}</div>
+        <div className="max-w-[1440px] mx-auto pt-8">{children}</div>
       </body>
     </html>
   );

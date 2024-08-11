@@ -4,12 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "./_components/Header";
 import { dancingScript } from "./layout";
-import { applicationDetails } from "./_lib/nylas";
-export default function Home() {
-  const detailsApp = applicationDetails;
 
+export default function Home() {
   return (
-    <main className="flex flex-col items-start min-h-screen pt-8 relative">
+    <main className="flex flex-col items-start min-h-screen  relative">
       <Header />
       <div className="grid grid-cols-3 grid-rows-1 gap-5 w-full items-center justify-center mt-16 h-full relative z-2">
         <div className="flex flex-col self-start gap-8">
