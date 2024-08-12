@@ -34,6 +34,15 @@ export async function GET(request) {
       maxAge: 60 * 60 * 24, // Cookie expires in 7 days
     });
 
+    // Set user session in a secure HTTP-only cookie
+    newResponse.cookies.set("nylasSession", JSON.stringify(userInfo), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
     return newResponse;
   } catch (error) {
     console.error(error);

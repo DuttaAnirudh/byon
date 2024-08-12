@@ -1,3 +1,9 @@
+import Spinner from "@/app/_components/Spinner";
+
 export default function Page() {
-  return <div>Loading...</div>;
+  return (
+    <div className="mt-[10rem]">
+      <Spinner />
+    </div>
+  );
 }

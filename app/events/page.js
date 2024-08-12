@@ -1,9 +1,7 @@
-import Header from "../_components/Header";
+export const metadata = {
+  title: "Events",
+};
 
 export default async function Page() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <div className="mt-8">List of all events</div>;
 }

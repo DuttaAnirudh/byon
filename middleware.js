@@ -4,15 +4,26 @@ export default function Middleware(request) {
   // Retrieve the token from cookies
   const token = request.cookies.get("nylasAuth");
 
-  // Define the restricted paths
-  const protectedPaths = ["/events"];
+  // Get the pathname from the request
+  const { pathname } = request.nextUrl;
 
-  // Check if the current request is for a protected path
-  if (protectedPaths.includes(request.nextUrl.pathname)) {
-    // If the token is not present, redirect to the login page
-    if (!token) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+  // Define the restricted paths
+  const protectedPaths = [
+    "/events",
+    "/account/profile",
+    "/account/activity",
+    "/new-event",
+  ];
+
+  // Check if the current path is one of the protected paths
+  const isProtectedRoute = protectedPaths.some((path) =>
+    pathname.startsWith(path)
+  );
+
+  // If the route is protected and the user is not authenticated, redirect to login
+  if (isProtectedRoute && !token) {
+    const loginUrl = new URL("/login", request.nextUrl);
+    return NextResponse.redirect(loginUrl);
   }
 
   // Continue to the requested page if authenticated or not a protected route
@@ -20,5 +31,5 @@ export default function Middleware(request) {
 }
 
 export const config = {
-  matcher: ["/events"],
+  matcher: ["/events", "/account/profile", "/account/activity", "/new-event"],
 };

@@ -2,13 +2,11 @@ import partBear from "@/public/party-bear.jpg";
 import partWoman from "@/public/party-woman.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "./_components/Header";
 import { dancingScript } from "./layout";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-start min-h-screen  relative">
-      <Header />
+    <main className="flex flex-col items-start min-h-[80vh]  relative">
       <div className="grid grid-cols-3 grid-rows-1 gap-5 w-full items-center justify-center mt-16 h-full relative z-2">
         <div className="flex flex-col self-start gap-8">
           <p className="mt-10 max-w-[22rem] font-light text-lg">

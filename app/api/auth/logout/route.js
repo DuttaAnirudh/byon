@@ -1,15 +1,24 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
-  const response = NextResponse.redirect("/login");
+export async function GET() {
+  // Create a response object to redirect the user
+  const response = NextResponse.redirect("http://localhost:3000/");
 
-  // Remove the token cookie
-  response.cookies.set("token", "", {
+  // Clear the 'nylasAuth' and 'nylasSession' cookies
+  response.cookies.set("nylasAuth", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "Strict",
     path: "/",
-    maxAge: 0, // Expire the cookie immediately
+    expires: new Date(0), // Expire the cookie immediately
+  });
+
+  response.cookies.set("nylasSession", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Strict",
+    path: "/",
+    expires: new Date(0), // Expire the cookie immediately
   });
 
   return response;
