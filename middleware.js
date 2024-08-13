@@ -10,7 +10,7 @@ export default function Middleware(request) {
   // Define the restricted paths
   const protectedPaths = [
     "/events",
-    "/account/profile",
+    "/account",
     "/account/activity",
     "/new-event",
   ];
@@ -31,5 +31,5 @@ export default function Middleware(request) {
 }
 
 export const config = {
-  matcher: ["/events", "/account/profile", "/account/activity", "/new-event"],
+  matcher: ["/events", "/account", "/account/activity", "/new-event"],
 };

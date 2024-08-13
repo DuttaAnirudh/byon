@@ -21,12 +21,6 @@ function Navigation() {
           {item.name}
         </Link>
       ))}
-      <Link
-        href="/api/auth/logout"
-        className="text-color-1 uppercase text-lg border-b-2 border-transparent hover:border-color-3 transition-all"
-      >
-        Log Out
-      </Link>
     </div>
   );
 }

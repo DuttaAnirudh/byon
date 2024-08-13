@@ -4,7 +4,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div className="mt-8">
+    <div className="">
       <p>User Activity Page</p>
     </div>
   );

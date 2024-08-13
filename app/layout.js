@@ -1,6 +1,6 @@
-import { Dancing_Script, Inter, Oswald } from "next/font/google";
-import "./globals.css";
+import { Dancing_Script, Oswald } from "next/font/google";
 import Header from "./_components/Header";
+import "./globals.css";
 
 export const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 export const dancingScript = Dancing_Script({
@@ -16,14 +16,13 @@ export const metadata = {
   description: "One Stop for your Next YOLO",
 };
 
+export const revalidate = 0;
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${oswald.className} bg-black text-n-2`}>
-        <div className="max-w-[1440px] mx-auto pt-8">
-          <Header />
-          {children}
-        </div>
+        <div className="max-w-[1440px] mx-auto pt-8">{children}</div>
       </body>
     </html>
   );

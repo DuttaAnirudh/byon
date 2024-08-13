@@ -1,4 +1,4 @@
-const { cookies } = require("next/headers");
+import { cookies } from "next/headers";
 
 export function useSession() {
   // Retrieve the 'nylasSession' cookie
