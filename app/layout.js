@@ -1,6 +1,5 @@
 import { Dancing_Script, Oswald } from "next/font/google";
-import Header from "./_components/Header";
-import "./globals.css";
+import "@/app/_styles/globals.css";
 
 export const oswald = Oswald({ subsets: ["latin"], display: "swap" });
 export const dancingScript = Dancing_Script({

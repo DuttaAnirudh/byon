@@ -1,3 +1,4 @@
+import { createUser, getUser } from "@/app/_lib/data-service";
 import { nylas } from "@/app/_lib/nylas";
 import { NextResponse } from "next/server";
 
@@ -19,6 +20,15 @@ export async function GET(request) {
     });
 
     const { idToken: token, ...userInfo } = response;
+    console.log("USER: ", userInfo);
+
+    const existingGuest = await getUser(userInfo.email);
+
+    if (!existingGuest) {
+      await createUser({
+        email: userInfo.email,
+      });
+    }
 
     // Create a response object
     const newResponse = NextResponse.redirect(

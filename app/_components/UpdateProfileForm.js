@@ -1,16 +1,22 @@
 "use client";
 
 import { cities } from "@/app/_lib/constant";
+import UpdateProfileButton from "./UpdateProfileButton";
+import { updateUserProfile } from "../_lib/actions";
 
-function UpdateProfileForm() {
+function UpdateProfileForm({ user }) {
+  const { id, fullName, email, contact, city, avatar } = user;
+
   return (
-    <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+    <form
+      action={updateUserProfile}
+      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+    >
       <div className="space-y-2">
         <label>Full name</label>
         <input
-          disabled
           name="fullName"
-          // defaultValue={fullName}
+          defaultValue={fullName}
           className="px-5 py-3 bg-n-1 text-black w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-n-1"
         />
       </div>
@@ -20,22 +26,23 @@ function UpdateProfileForm() {
         <input
           disabled
           name="email"
-          // defaultValue={email}
+          defaultValue={email}
           className="px-5 py-3 bg-n-1 text-black w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-n-1"
         />
       </div>
 
       <div className="space-y-2">
         <div className="flex items-center justify-start gap-8">
-          <label htmlFor="location">Choose your city:</label>
+          <label htmlFor="city">Choose your city:</label>
           <select
-            name="location"
+            name="city"
+            defaultValue={city}
             className="w-[15rem] px-1 py-3 bg-n-1 text-black shadow-sm rounded-sm "
           >
             <option value="">Select city...</option>
-            {cities.map((c) => (
-              <option key={c} value={`${c}`}>
-                {c}
+            {cities.map((city) => (
+              <option key={city} value={`${city}`}>
+                {city}
               </option>
             ))}
           </select>
@@ -46,15 +53,15 @@ function UpdateProfileForm() {
         <label htmlFor="contact">Contact number</label>
         <input
           name="contact"
-          // defaultValue={nationalID}
+          defaultValue={contact}
           className="px-5 py-3 bg-n-1 text-black w-full shadow-sm rounded-sm"
         />
       </div>
 
+      <input name="guestId" defaultValue={id} className="hidden" />
+
       <div className="flex justify-end items-center gap-6">
-        <button className="border border-color-2 px-3 py-1 rounded-lg hover:bg-color-2 hover:text-color-3  transition-all">
-          Update Profile
-        </button>
+        <UpdateProfileButton>Update Profile</UpdateProfileButton>
       </div>
     </form>
   );

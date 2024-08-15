@@ -1,10 +1,28 @@
 import partBear from "@/public/party-bear.jpg";
+import { MapPinIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
 
-function Carousel() {
+function Carousel({ event }) {
+  const {
+    id,
+    name,
+    date,
+    time,
+    location,
+    city,
+    totalPass,
+    remainingPass,
+    price,
+    image,
+  } = event;
+
   return (
-    <div className="flex flex-col gap-1 min-w-[10rem] cursor-pointer hover:shadow-md hover:shadow-color-1/50 py-2 transition-all">
-      <div className="relative w-full min-h-[22rem] rounded-3xl overflow-hidden">
+    <Link
+      href={`/events/${id}`}
+      className="flex flex-col gap-1 min-w-[10rem] group py-2 transition-all"
+    >
+      <div className="relative w-full min-h-[22rem] rounded-t-3xl overflow-hidden group-hover:shadow-lg group-hover:shadow-color-1/50">
         <Image
           src={partBear}
           fill
@@ -12,16 +30,20 @@ function Carousel() {
           className="object-cover"
         />
       </div>
-      <div className="flex flex-col items-start justify-start gap-2">
-        <h3 className="text-xl font-semibold whitespace-nowrap text-ellipsis w-full overflow-hidden">
-          Event Name Event Name
+      <div className="flex flex-col items-start justify-start gap-0">
+        <h3 className="text-xl font-semibold whitespace-nowrap text-ellipsis w-full overflow-hidden group-hover:text-color-3">
+          {name}
         </h3>
-        <p className="font-extralight whitespace-nowrap text-ellipsis w-full overflow-hidden">
-          Location
-        </p>
-        <p className="tracking-wider">$ Price</p>
+
+        <h3 className="font-extralight whitespace-nowrap text-ellipsis flex items-center justify-center gap-1">
+          <span className="h-3 w-3 text-n-2">
+            <MapPinIcon />
+          </span>{" "}
+          {location},
+        </h3>
+        <p className="tracking-wider text-color-1 mt-2 self-end">₹{price}/-</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

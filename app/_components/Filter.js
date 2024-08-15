@@ -2,19 +2,14 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import ButtonFilter from "./ButtonFilter";
-
-const filterOptions = [
-  { name: "Delhi NCR", filter: "Delhi-NCR" },
-  { name: "Mumbai", filter: "Mumbai" },
-  { name: "Bangalore", filter: "Bangalore" },
-];
+import { filterOptions } from "../_lib/constant";
 
 function Filter() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
 
-  const activeFilter = searchParams.get("location") ?? "Delhi-NCR";
+  const activeFilter = searchParams.get("location") ?? "all";
 
   function handleFilter(filter) {
     const params = new URLSearchParams(searchParams);

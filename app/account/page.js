@@ -1,10 +1,15 @@
 import UpdateProfileForm from "../_components/UpdateProfileForm";
+import { useSession } from "../_hooks/useSession";
+import { getUser } from "../_lib/data-service";
 
 export const metadata = {
   title: "User Profile",
 };
 
-export default function Page() {
+export default async function Page() {
+  const session = useSession();
+  const user = await getUser(session.email);
+
   return (
     <div>
       <h2 className="font-semibold text-2xl text-n-2 mb-4">
@@ -15,7 +20,7 @@ export default function Page() {
         faster and smoother. See you soon!
       </p>
 
-      <UpdateProfileForm />
+      <UpdateProfileForm user={user} />
     </div>
   );
 }
