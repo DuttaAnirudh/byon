@@ -6,7 +6,7 @@ export async function createUser(newGuest) {
   const { data, error } = await supabase
     .from("users")
     .insert([newGuest])
-    .select();
+    .select("*");
 
   if (error) {
     console.error(error);

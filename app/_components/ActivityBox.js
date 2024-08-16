@@ -3,28 +3,33 @@ import {
   HeartIcon,
   MapPinIcon,
 } from "@heroicons/react/24/solid";
+import { format } from "date-fns";
 
-function ActivityBox() {
+function ActivityBox({ booking }) {
+  const { eventDate, eventName, city, location } = booking;
   return (
     <div>
-      <div className="flex flex-col items-start justify-start gap-2 border border-color-1 px-5 py-3  rounded-2xl">
+      <div className="flex flex-col items-start justify-start gap-3 border border-color-1 px-5 py-3 min-w-[20rem]  rounded-2xl">
         <p className="font-light flex items-center justify-center gap-2 text-color-3">
           <span className="h-5 w-5 text-color-1">
             <CalendarDaysIcon />{" "}
-          </span>{" "}
-          Date
+          </span>
+          {format(
+            new Date(eventDate.split("-").join(", ")),
+            "EEEE dd MMMM, yyyy"
+          )}
         </p>
-        <h4 className="text-lg font-semibold flex items-center justify-center gap-2 text-color-3">
+        <h4 className="text-xl font-semibold flex items-center justify-center gap-2 text-color-3">
           <span className="h-5 w-5 text-color-1">
             <HeartIcon />{" "}
           </span>{" "}
-          Event Name Event Name Event Name
+          {eventName}
         </h4>
         <p className="font-light flex items-center justify-center gap-2 text-color-3">
           <span className="h-5 w-5 text-color-1">
             <MapPinIcon />{" "}
           </span>{" "}
-          Location
+          {location}, {city}
         </p>
       </div>
     </div>

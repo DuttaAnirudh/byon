@@ -48,7 +48,7 @@ export default async function Page({ params }) {
           {format(new Date(date.split("-").join(", ")), "EEE dd MMM yyyy")} at{" "}
           {format(new Date([2024, 8, 15, time].join(", ")), "h:mm bb")}
         </p>
-        <p className="font-light max-w-[75%]">{description}</p>
+        <p className="font-light w-[75%]">{description}</p>
         <p className="font-semibold text-color-3 text-3xl pt-3 tracking-wider self-end">
           ₹{price}/-
         </p>

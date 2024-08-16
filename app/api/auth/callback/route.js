@@ -20,14 +20,20 @@ export async function GET(request) {
     });
 
     const { idToken: token, ...userInfo } = response;
-    console.log("USER: ", userInfo);
 
-    const existingGuest = await getUser(userInfo.email);
+    const existingUser = await getUser(userInfo.email);
 
-    if (!existingGuest) {
-      await createUser({
+    let userData = userInfo;
+
+    if (!existingUser) {
+      const { data } = await createUser({
         email: userInfo.email,
       });
+      userData = { ...userInfo, userId: data.at(0).id };
+    }
+
+    if (existingUser) {
+      userData = { ...userInfo, userId: existingUser.id };
     }
 
     // Create a response object
@@ -45,7 +51,7 @@ export async function GET(request) {
     });
 
     // Set user session in a secure HTTP-only cookie
-    newResponse.cookies.set("nylasSession", JSON.stringify(userInfo), {
+    newResponse.cookies.set("nylasSession", JSON.stringify(userData), {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Strict",
