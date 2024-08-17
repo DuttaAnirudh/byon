@@ -12,11 +12,11 @@ export default function Home() {
 
       <div className="grid grid-cols-3 grid-rows-1 gap-5 w-full items-center justify-center mt-16 h-full relative z-2">
         <div className="flex flex-col self-start gap-8">
-          <p className="mt-10 max-w-[22rem] font-light text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-            maximus nec arcu ac venenatis. Integer varius eros ac urna vehicula
-            euismod. Vivamus nisi nisi, accumsan eget eleifend a, venenatis non
-            elit.
+          <p className="mt-10 max-w-[24rem] font-light text-lg">
+            Welcome to your ultimate party destination! Book the perfect event
+            or host your own with ease. From small gatherings to big
+            celebrations, we make party planning simple. Start creating
+            unforgettable moments today!
           </p>
           <Link
             href="/events"

@@ -47,7 +47,7 @@ export async function GET(request) {
       secure: process.env.NODE_ENV === "production", // Only secure in production
       sameSite: "Strict", // Prevent CSRF attacks
       path: "/", // Make the cookie available across the site
-      maxAge: 60 * 60 * 24, // Cookie expires in 7 days
+      maxAge: 60 * 60 * 24,
     });
 
     // Set user session in a secure HTTP-only cookie
@@ -56,7 +56,7 @@ export async function GET(request) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "Strict",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 60 * 60 * 24,
     });
 
     return newResponse;

@@ -12,6 +12,14 @@ export const accountLinks = [
     name: "Activity",
     href: "/account/activity",
   },
+  {
+    name: "Host a party",
+    href: "/account/host",
+  },
+  {
+    name: "Manage your Events",
+    href: "/account/manage",
+  },
 ];
 
 export const cities = ["Delhi NCR", "Mumbai", "Bangalore"];
