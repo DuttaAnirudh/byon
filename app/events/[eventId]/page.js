@@ -36,7 +36,7 @@ export default async function Page({ params }) {
         />
       </div>
 
-      <div className="flex flex-col items-start justify-end gap-1 min-h-[27rem]">
+      <div className="flex flex-col items-start justify-end gap-1 min-h-[27rem] flex-1">
         <h1 className="text-5xl font-semibold text-color-3">{name}</h1>
         <h3 className="font-light flex items-center justify-center gap-1">
           <span className="h-4 w-4 text-color-1">

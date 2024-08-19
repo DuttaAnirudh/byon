@@ -1,11 +1,15 @@
+import { createEvent } from "../_lib/actions";
 import { cities } from "../_lib/constant";
 import CreateEventFormButton from "./CreateEventButton";
 
-function NewEventForm({ user }) {
-  const { id } = user;
+function CreateEventForm({ user }) {
+  const id = user;
 
   return (
-    <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col w-[50rem] max-w-[50rem] mx-auto ">
+    <form
+      action={createEvent}
+      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col w-[50rem] max-w-[50rem] mx-auto "
+    >
       <div className="space-y-2 flex flex-col">
         <label className="text-xl text-color-3">Event Name</label>
         <input
@@ -21,7 +25,7 @@ function NewEventForm({ user }) {
           <input
             required
             type="date"
-            name="eventDate"
+            name="date"
             className="w-[15rem] px-1 py-3 bg-n-1 text-black shadow-sm rounded-sm "
           />
         </div>
@@ -33,7 +37,7 @@ function NewEventForm({ user }) {
           <input
             required
             type="time"
-            name="eventTime"
+            name="time"
             className="w-[15rem] px-1 py-3 bg-n-1 text-black shadow-sm rounded-sm "
           />
         </div>
@@ -111,4 +115,4 @@ function NewEventForm({ user }) {
   );
 }
 
-export default NewEventForm;
+export default CreateEventForm;

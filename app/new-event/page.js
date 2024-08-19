@@ -1,5 +1,5 @@
+import CreateEventForm from "../_components/CreateEventForm";
 import Header from "../_components/Header";
-import NewEventForm from "../_components/NewEventForm";
 import { useSession } from "../_hooks/useSession";
 
 export default function Page() {
@@ -8,7 +8,7 @@ export default function Page() {
     <div className="flex flex-col gap-6">
       <Header />
 
-      <NewEventForm user={session.userId} />
+      <CreateEventForm user={session.userId} />
     </div>
   );
 }

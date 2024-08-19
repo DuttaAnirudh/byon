@@ -59,6 +59,21 @@ export async function getEvent(id) {
   return data;
 }
 
+// Get data about a all events hosted by user
+export async function getEventsHostedByUser(hostId) {
+  const { data, error } = await supabase
+    .from("events")
+    .select("*")
+    .eq("hostId", hostId);
+
+  if (error) {
+    console.error(error);
+    notFound();
+  }
+
+  return data;
+}
+
 // Get all the events bookings done by the user
 export async function getBookings(userId) {
   const { data, error } = await supabase

@@ -24,7 +24,7 @@ export default async function EventsList({ filter }) {
 
   return (
     <div
-      className="grid justify-start items-end gap-x-10 gap-y-6 w-full"
+      className="grid justify-start items-end gap-x-16 gap-y-6 w-full"
       style={{
         gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 12rem))",
       }}
