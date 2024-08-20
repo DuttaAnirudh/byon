@@ -35,12 +35,14 @@ function Carousel({ event }) {
           {name}
         </h3>
 
-        <h3 className="font-extralight whitespace-nowrap text-ellipsis flex items-center justify-center gap-1">
-          <span className="h-3 w-3 text-n-2">
+        <div className="flex items-center justify-start gap-1 w-full">
+          <p className="h-3 w-3 text-n-2">
             <MapPinIcon />
-          </span>{" "}
-          {location},
-        </h3>
+          </p>
+          <h3 className="font-extralight whitespace-nowrap text-ellipsis w-[95%] overflow-hidden ">
+            {location},{city}
+          </h3>
+        </div>
         <p className="tracking-wider text-color-1 mt-2 self-end">₹{price}/-</p>
       </div>
     </Link>

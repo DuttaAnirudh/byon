@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { supabase } from "./supabase";
 import { redirect } from "next/navigation";
+import { supabase } from "./supabase";
 
 // UPDATING GUEST PROFILE DATA IN DB
 export async function updateUserProfile(formData) {
@@ -70,5 +70,54 @@ export async function createEvent(formData) {
   revalidatePath("/account/manage");
 
   // Redirecting to hosted events management page
+  redirect("/account/manage");
+}
+
+export async function updateEvent(formData) {
+  const name = formData.get("name");
+  const date = formData.get("date");
+  const time = formData.get("time");
+  const location = formData.get("location");
+  const city = formData.get("city");
+  const description = formData.get("description");
+  const price = formData.get("price");
+  const totalPass = formData.get("totalPass");
+  const remainingPass = formData.get("totalPass");
+
+  const id = formData.get("id");
+
+  const updateEventData = {
+    name,
+    date,
+    time,
+    location,
+    city,
+    description,
+    price,
+    totalPass,
+    remainingPass,
+  };
+
+  const { error } = await supabase
+    .from("events")
+    .update(updateEventData)
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    throw new Error("Event could not be updated");
+  }
+
+  revalidatePath("/account/manage");
+}
+
+export async function deleteEvent(eventId) {
+  const { error } = await supabase.from("events").delete().eq("id", eventId);
+
+  if (error) {
+    throw new Error("Event could not be deleted");
+  }
+
+  revalidatePath("/account/manage");
   redirect("/account/manage");
 }

@@ -5,7 +5,7 @@ import { BoltIcon, ClockIcon } from "@heroicons/react/24/solid";
 import { isFuture, isPast } from "date-fns";
 
 export const metadata = {
-  title: "User Activity",
+  title: "Your Activity",
 };
 
 export default async function Page() {

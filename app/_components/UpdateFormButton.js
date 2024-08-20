@@ -3,7 +3,7 @@
 import { useFormStatus } from "react-dom";
 import SpinnerMini from "./SpinnerMini";
 
-function UpdateProfileButton({ children }) {
+function UpdateFormButton({ children }) {
   const { pending } = useFormStatus();
 
   return (
@@ -18,4 +18,4 @@ function UpdateProfileButton({ children }) {
   );
 }
 
-export default UpdateProfileButton;
+export default UpdateFormButton;

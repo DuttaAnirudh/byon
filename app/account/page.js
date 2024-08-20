@@ -3,7 +3,7 @@ import { useSession } from "../_hooks/useSession";
 import { getUser } from "../_lib/data-service";
 
 export const metadata = {
-  title: "User Profile",
+  title: "Your Profile",
 };
 
 export default async function Page() {

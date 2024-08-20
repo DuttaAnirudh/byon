@@ -1,8 +1,9 @@
 "use client";
 
 import { cities } from "@/app/_lib/constant";
-import UpdateProfileButton from "./UpdateProfileButton";
+import UpdateProfileButton from "./UpdateFormButton";
 import { updateUserProfile } from "../_lib/actions";
+import UpdateFormButton from "./UpdateFormButton";
 
 function UpdateProfileForm({ user }) {
   const { id, fullName, email, contact, city, avatar } = user;
@@ -61,7 +62,7 @@ function UpdateProfileForm({ user }) {
       <input name="guestId" defaultValue={id} className="hidden" />
 
       <div className="flex justify-end items-center gap-6">
-        <UpdateProfileButton>Update Profile</UpdateProfileButton>
+        <UpdateFormButton>Update Profile</UpdateFormButton>
       </div>
     </form>
   );

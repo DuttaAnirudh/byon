@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Be a Host",
+};
+
 export default function Page() {
   return (
     <div className="text-lg font-light flex flex-col items-start justify-start gap-1 min-h-[70vh]">
