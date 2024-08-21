@@ -78,12 +78,42 @@ export async function getEventsHostedByUser(hostId) {
 export async function getBookings(userId) {
   const { data, error } = await supabase
     .from("bookings")
-    .select("*")
+    .select("id, eventDate, eventName, city, location")
     .eq("customerId", userId);
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
+  }
+
+  return data;
+}
+
+// Get all the events bookings done by the user
+export async function getHostedEventBookings(eventId) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("id, price, customerName, customerEmail, created_at")
+    .eq("eventId", eventId);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+
+  return data;
+}
+
+// Get data about a particular event with id
+export async function getTotalPassesForEvent(id) {
+  const { data, error } = await supabase
+    .from("events")
+    .select("totalPass")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    return 0;
   }
 
   return data;
