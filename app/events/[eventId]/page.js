@@ -3,6 +3,8 @@ import Image from "next/image";
 import poster from "@/public/poster.jpg";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { format } from "date-fns";
+import { useSession } from "@/app/_hooks/useSession";
+import Button from "@/app/_components/Button";
 
 export async function generateMetadata({ params }) {
   const { name } = await getEvent(params.eventId);
@@ -10,6 +12,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
+  const event = await getEvent(params.eventId);
   const {
     id,
     name,
@@ -23,7 +26,8 @@ export default async function Page({ params }) {
     image,
     hostId,
     description,
-  } = await getEvent(params.eventId);
+  } = event;
+  const session = useSession();
 
   return (
     <section className="flex  items-start gap-[2.5rem] mb-4 mt-7">
@@ -58,14 +62,9 @@ export default async function Page({ params }) {
           </p>
         )}
         {totalPass > 0 && (
-          <form className="my-3 self-end">
-            <button
-              className="border font-bold text-2xl text-color-1 px-3 py-2 w-[10rem] 
-        rounded-lg hover:bg-color-3 hover:text-color-1 border-n-1 transition-all  uppercase"
-            >
-              Book Now
-            </button>
-          </form>
+          <div className="my-3 self-end">
+            <Button session={session} event={event} />
+          </div>
         )}
         {totalPass <= 0 && (
           <button

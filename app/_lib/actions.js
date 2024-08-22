@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { supabase } from "./supabase";
+// import { createAndSendDraft } from "./data-service";
+import { nylas } from "./nylas";
 
 // UPDATING GUEST PROFILE DATA IN DB
 export async function updateUserProfile(formData) {

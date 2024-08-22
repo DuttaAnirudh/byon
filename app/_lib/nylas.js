@@ -6,5 +6,3 @@ const NylasConfig = {
 };
 
 export const nylas = new Nylas(NylasConfig);
-
-export const applicationDetails = await nylas.applications.getDetails();
