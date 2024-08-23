@@ -8,6 +8,8 @@ export const metadata = {
   title: "Your Hosted Events",
 };
 
+export const revalidate = 0;
+
 export default async function Page() {
   const session = useSession();
   const events = await getEventsHostedByUser(session.userId);

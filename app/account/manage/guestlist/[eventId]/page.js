@@ -8,6 +8,8 @@ export async function generateMetadata({ params }) {
   return { title: `Manage - ${name}` };
 }
 
+export const revalidate = 0;
+
 export default function Page({ params }) {
   return (
     <div>

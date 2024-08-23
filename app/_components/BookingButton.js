@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SpinnerMini from "./SpinnerMini";
 
-function Button({ session, event }) {
+function BookingButton({ session, event }) {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,10 +42,12 @@ function Button({ session, event }) {
       <button
         onClick={handleSubmit}
         disabled={isLoading}
-        className={`border font-bold text-2xl text-color-1 px-3 py-2 w-[10rem] 
+        className={` font-bold text-2xl text-color-1 px-3 py-2 w-[10rem] 
 rounded-lg ${
-          !isLoading ? "hover:bg-color-3 hover:text-color-1" : ""
-        } border-n-1 transition-all  uppercase`}
+          !isLoading
+            ? "border border-n-1 hover:bg-color-3 hover:text-color-1"
+            : ""
+        }  transition-all  uppercase`}
       >
         {!isLoading ? "Book Now" : <SpinnerMini />}
       </button>
@@ -58,4 +60,4 @@ rounded-lg ${
   );
 }
 
-export default Button;
+export default BookingButton;

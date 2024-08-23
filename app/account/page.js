@@ -6,6 +6,8 @@ export const metadata = {
   title: "Your Profile",
 };
 
+export const revalidate = 0;
+
 export default async function Page() {
   const session = useSession();
   const user = await getUser(session.email);

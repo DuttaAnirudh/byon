@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   getHostedEventBookings,
   getTotalPassesForEvent,
@@ -10,13 +11,23 @@ export default async function GuestList({ eventId }) {
 
   return (
     <div className="flex flex-col items-start justify-start gap-3 w-full">
-      <p className="self-end font-light  uppercase">
-        Total Attendees:{" "}
-        <span className="text-color-3 font-medium">
-          {bookings.length <= 9 ? `0${bookings.length}` : `${bookings.length}`}{" "}
-          {maxNumOfAttendees !== 0 ? `/ ${maxNumOfAttendees.totalPass}` : ""}
-        </span>
-      </p>
+      <div className="flex items-center justify-between gap-3 w-full my-3">
+        <p className="font-light  uppercase py-1 px-3 border border-color-3 rounded-lg">
+          Total Attendees:{" "}
+          <span className="text-color-3 font-medium">
+            {bookings.length <= 9
+              ? `0${bookings.length}`
+              : `${bookings.length}`}{" "}
+            {maxNumOfAttendees !== 0 ? `/ ${maxNumOfAttendees.totalPass}` : ""}
+          </span>
+        </p>
+        <Link
+          href={`/send-mail/guests/${eventId}`}
+          className="uppercase font-semibold py-1 px-3 border border-color-3 rounded-lg hover:bg-color-3 hover:text-color-1"
+        >
+          Mail All Attendees
+        </Link>
+      </div>
       <div className="grid grid-cols-[8rem_1fr_1fr_1fr] items-center justify-between w-full pl-3.5">
         <h4 className="text-lg text-color-3 uppercase">BYON ID</h4>
         <h4 className="text-lg text-color-3 uppercase">Customer Name</h4>

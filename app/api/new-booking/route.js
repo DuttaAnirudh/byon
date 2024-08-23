@@ -1,13 +1,12 @@
 import { getUser } from "@/app/_lib/data-service";
 import { nylas } from "@/app/_lib/nylas"; // Ensure you've correctly set up and imported the Nylas SDK
 import { supabase } from "@/app/_lib/supabase";
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
     const { recipientEmail, grantId, event } = await req.json();
-    console.log(event);
+
     // Fetch USER DATA
     const user = await getUser(recipientEmail);
 

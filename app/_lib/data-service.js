@@ -118,3 +118,18 @@ export async function getTotalPassesForEvent(id) {
 
   return data;
 }
+
+// Get all the events bookings done by the user
+export async function getBookingForEmail(bookingId) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("customerName, customerEmail")
+    .eq("id", bookingId);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+
+  return data;
+}

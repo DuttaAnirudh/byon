@@ -1,10 +1,10 @@
+import BookingButton from "@/app/_components/BookingButton";
+import { useSession } from "@/app/_hooks/useSession";
 import { getEvent } from "@/app/_lib/data-service";
-import Image from "next/image";
 import poster from "@/public/poster.jpg";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { format } from "date-fns";
-import { useSession } from "@/app/_hooks/useSession";
-import Button from "@/app/_components/Button";
+import Image from "next/image";
 
 export async function generateMetadata({ params }) {
   const { name } = await getEvent(params.eventId);
@@ -63,7 +63,7 @@ export default async function Page({ params }) {
         )}
         {totalPass > 0 && (
           <div className="my-3 self-end">
-            <Button session={session} event={event} />
+            <BookingButton session={session} event={event} />
           </div>
         )}
         {totalPass <= 0 && (

@@ -7,6 +7,8 @@ export const metadata = {
   title: "Events",
 };
 
+export const revalidate = 0;
+
 export default async function Page({ searchParams }) {
   const filter = searchParams?.location ?? "all";
 

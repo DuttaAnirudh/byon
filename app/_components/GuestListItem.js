@@ -1,5 +1,6 @@
-import RemoveGuest from "./RemoveGuest";
-import SendGuestMailButton from "./SendGuestMailButton";
+import { AtSymbolIcon, TrashIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+import { deleteBooking } from "@/app/_lib/actions";
 
 function GuestListItem({ booking }) {
   return (
@@ -18,8 +19,25 @@ function GuestListItem({ booking }) {
         {booking.customerEmail}
       </p>
       <div className="justify-self-center flex items-center justify-center gap-2">
-        <SendGuestMailButton />
-        <RemoveGuest />
+        {/* REDIRECT TO SEND EMAIL PAGE */}
+        <Link
+          href={`/send-mail/${booking.id}`}
+          className="h-8 w-8 p-2 cursor-pointer text-n-1 hover:text-color-1"
+        >
+          <AtSymbolIcon />
+        </Link>
+
+        {/* DELETE THE BOOKING */}
+        <form action={deleteBooking}>
+          <input
+            className="hidden"
+            defaultValue={booking.id}
+            name="bookingId"
+          />
+          <button className="h-8 w-8 p-2 cursor-pointer text-n-1 hover:text-color-1">
+            <TrashIcon />
+          </button>
+        </form>
       </div>
     </div>
   );

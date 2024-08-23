@@ -7,6 +7,8 @@ export async function generateMetadata({ params }) {
   return { title: `Edit - ${name}` };
 }
 
+export const revalidate = 0;
+
 export default async function Page({ params }) {
   const { userId } = useSession();
   const event = await getEvent(params.eventId);

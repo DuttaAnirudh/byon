@@ -1,25 +1,31 @@
 import { unstable_noStore as noStore } from "next/cache";
 import Carousel from "./Carousel";
 import { getEvents } from "@/app/_lib/data-service";
+import { isFuture, isToday } from "date-fns";
+
+export const revalidate = 0;
 
 export default async function EventsList({ filter }) {
   noStore();
 
   const events = await getEvents();
 
+  // GETTING A LIST OF FUTURE EVENTS
+  const futureEvents = events.filter((event) => isFuture(new Date(event.date)));
+
   let eventsList;
 
   if (filter === "all") {
-    eventsList = events;
+    eventsList = futureEvents;
   }
   if (filter === "delhi-ncr") {
-    eventsList = events?.filter((event) => event.city === "Delhi NCR");
+    eventsList = futureEvents?.filter((event) => event.city === "Delhi NCR");
   }
   if (filter === "mumbai") {
-    eventsList = events?.filter((event) => event.city === "Mumbai");
+    eventsList = futureEvents?.filter((event) => event.city === "Mumbai");
   }
   if (filter === "bangalore") {
-    eventsList = events?.filter((event) => event.city === "Banglore");
+    eventsList = futureEvents?.filter((event) => event.city === "Banglore");
   }
 
   return (
