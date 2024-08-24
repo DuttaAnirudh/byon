@@ -24,6 +24,25 @@
     animation: rotate 1s infinite linear;
   }
 
+  .file-input-btn::file-selector-button {
+    font: inherit;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff078;
+    padding: 0.5rem 0.4rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.3s;
+  }
+
+  .file-input-btn::file-selector-button:hover {
+    color: #fff078;
+    background-color: #000;
+    border: 1px solid #fff078;
+  }
+
   @keyframes rotate {
     to {
       transform: rotate(1turn);

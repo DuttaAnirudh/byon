@@ -31,9 +31,7 @@ function CreateEventForm({ user }) {
         </div>
 
         <div className="space-y-2 flex flex-col">
-          <label className="text-xl text-color-3" htmlFor="contact">
-            Time
-          </label>
+          <label className="text-xl text-color-3">Time</label>
           <input
             required
             type="time"
@@ -44,9 +42,7 @@ function CreateEventForm({ user }) {
       </div>
 
       <div className=" space-y-2 flex flex-col">
-        <label className="text-xl text-color-3" htmlFor="contact">
-          Location
-        </label>
+        <label className="text-xl text-color-3">Location</label>
         <input
           required
           name="location"
@@ -55,9 +51,7 @@ function CreateEventForm({ user }) {
       </div>
 
       <div className="space-y-2 flex flex-col">
-        <label className="text-xl text-color-3" htmlFor="city">
-          Choose city
-        </label>
+        <label className="text-xl text-color-3">Choose city</label>
         <div className="flex items-center justify-start gap-8">
           <select
             name="city"
@@ -74,9 +68,7 @@ function CreateEventForm({ user }) {
       </div>
 
       <div className=" space-y-2 flex flex-col">
-        <label className="text-xl text-color-3 " htmlFor="contact">
-          Describe your event
-        </label>
+        <label className="text-xl text-color-3 ">Describe your event</label>
         <input
           required
           name="description"
@@ -85,9 +77,7 @@ function CreateEventForm({ user }) {
       </div>
       <div className="flex items-center justify-start gap-8">
         <div className=" space-y-2 flex flex-col">
-          <label className="text-xl text-color-3 " htmlFor="contact">
-            Entry Free
-          </label>
+          <label className="text-xl text-color-3 ">Entry Free</label>
           <input
             required
             name="price"
@@ -95,7 +85,7 @@ function CreateEventForm({ user }) {
           />
         </div>
         <div className=" space-y-2 flex flex-col">
-          <label className="text-xl text-color-3 " htmlFor="contact">
+          <label className="text-xl text-color-3 ">
             Total Number of Passes
           </label>
           <input
@@ -104,6 +94,17 @@ function CreateEventForm({ user }) {
             className="w-[15rem] px-5 py-3 bg-n-1 text-black shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-n-1"
           />
         </div>
+      </div>
+
+      <div className=" space-y-2 flex items-center gap-2">
+        <label className="text-xl text-color-3 ">Event Poster :</label>
+        <input
+          name="image"
+          type="file"
+          accept="image/*"
+          required
+          className="file-input-btn"
+        />
       </div>
 
       <input name="hostId" defaultValue={id} className="hidden" />

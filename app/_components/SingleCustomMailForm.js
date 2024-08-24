@@ -37,7 +37,7 @@ function SingleCustomMailForm({ mailData, session }) {
     setIsLoading(false);
 
     if (response.ok) {
-      // Redirect to /account/activity after successful booking
+      // Redirect to /account/manage after email is sent
       window.location.href = "/account/manage";
     }
   };

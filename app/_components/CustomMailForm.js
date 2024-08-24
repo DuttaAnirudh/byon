@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SpinnerMini from "./SpinnerMini";
 
-function CustomMailForm({ mailData, session }) {
+function CustomMailForm({ mailData, session, eventId }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ function CustomMailForm({ mailData, session }) {
 
     setIsLoading(true);
 
-    const response = await fetch("/api/send-mail", {
+    const response = await fetch("/api/send-multiple-mails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,6 +24,7 @@ function CustomMailForm({ mailData, session }) {
         mailData,
         grantId: session.grantId,
         subject,
+        hostEmail: session.email,
         message,
       }),
     });
@@ -38,7 +39,7 @@ function CustomMailForm({ mailData, session }) {
 
     if (response.ok) {
       // Redirect to /account/activity after successful booking
-      window.location.href = "/account/manage";
+      window.location.href = `/account/manage/guestlist/${eventId}`;
     }
   };
 

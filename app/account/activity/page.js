@@ -3,6 +3,7 @@ import { useSession } from "@/app/_hooks/useSession";
 import { getBookings } from "@/app/_lib/data-service";
 import { BoltIcon, ClockIcon } from "@heroicons/react/24/solid";
 import { isFuture, isPast } from "date-fns";
+import Link from "next/link";
 
 export const metadata = {
   title: "Your Activity",
@@ -37,7 +38,9 @@ export default async function Page() {
           <div className="flex flex-wrap gap-4 items-center justify-start  w-full">
             {/* BOX */}
             {futureBookings.map((booking) => (
-              <ActivityBox booking={booking} key={booking.id} />
+              <Link href={`/events/${booking.eventId}`} key={booking.id}>
+                <ActivityBox booking={booking} />
+              </Link>
             ))}
           </div>
         </>

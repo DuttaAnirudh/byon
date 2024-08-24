@@ -1,4 +1,3 @@
-import partBear from "@/public/party-bear.jpg";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,9 +23,9 @@ function Carousel({ event }) {
     >
       <div className="relative w-full min-h-[22rem] rounded-t-3xl overflow-hidden group-hover:shadow-lg group-hover:shadow-color-1/50">
         <Image
-          src={partBear}
+          src={image}
           fill
-          alt={`event poster`}
+          alt={`${name} poster`}
           className="object-cover"
         />
       </div>

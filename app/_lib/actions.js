@@ -38,8 +38,13 @@ export async function createEvent(formData) {
   const price = formData.get("price");
   const totalPass = formData.get("totalPass");
   const remainingPass = formData.get("totalPass");
+  const imageFile = formData.get("image");
 
   const hostId = formData.get("hostId");
+
+  // SET THE PATHNAME AND IMAGE NAME OF EVENT POSTER
+  const imageName = `${Math.random()}-${imageFile.name}`.replaceAll("/", "");
+  const imagePath = `${process.env.SUPABASE_URL}/storage/v1/object/public/eventPosters/${imageName}`;
 
   const eventData = {
     name,
@@ -51,9 +56,13 @@ export async function createEvent(formData) {
     price,
     totalPass,
     remainingPass,
+    image: imagePath,
     hostId,
   };
 
+  /////////////////////////////////
+  /////////////////////////////////
+  // 1. CREATE A NEW EVENT
   const { data, error } = await supabase
     .from("events")
     .insert([eventData])
@@ -63,6 +72,21 @@ export async function createEvent(formData) {
   if (error) {
     console.error(error);
     throw new Error("Event could not be created");
+  }
+
+  /////////////////////////////////
+  /////////////////////////////////
+  // 2. UPLOAD THE IMAGE TO BUCKET
+  const { error: storageError } = await supabase.storage
+    .from("eventPosters")
+    .upload(imageName, imageFile);
+
+  /////////////////////////////////
+  /////////////////////////////////
+  // 3. DELETE THE EVENT FROM DB IF THERE WAS ERROR UPLOADING EVENT POSTER
+  if (storageError) {
+    await supabase.from("events").delete().eq("id", data.id);
+    throw new Error("There was an error creating the event:", storageError);
   }
 
   // Clearing cache to save new profile data in cache

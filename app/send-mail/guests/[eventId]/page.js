@@ -14,7 +14,11 @@ export default async function Page({ params }) {
       <h2 className="font-semibold text-2xl text-n-1 mb-2 ">
         Send a Mail to <span className="text-color-1">All the Attendees</span>
       </h2>
-      <CustomMailForm mailData={mailData} session={session} />
+      <CustomMailForm
+        mailData={mailData}
+        session={session}
+        eventId={params.eventId}
+      />
     </div>
   );
 }
