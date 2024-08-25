@@ -135,6 +135,61 @@ export async function updateEvent(formData) {
   revalidatePath("/account/manage");
 }
 
+export async function updateEventPoster(formData) {
+  const id = formData.get("id");
+  const imageFile = formData.get("image");
+  const currentImageSrc = formData.get("currentImageSrc");
+
+  console.log(id, imageFile);
+
+  const imageName = `${Math.random()}-${imageFile.name}`.replaceAll("/", "");
+  const imagePath = `${process.env.SUPABASE_URL}/storage/v1/object/public/eventPosters/${imageName}`;
+
+  const updateEventData = {
+    image: imagePath,
+  };
+
+  /////////////////////////////////
+  /////////////////////////////////
+  // 2. UPDATE THE IMAGE SOURCE IN EVENT DB
+
+  const { error } = await supabase
+    .from("events")
+    .update(updateEventData)
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    throw new Error("Event could not be updated");
+  }
+
+  /////////////////////////////////
+  /////////////////////////////////
+  // 2. UPLOAD THE IMAGE TO BUCKET
+  const { error: storageError } = await supabase.storage
+    .from("eventPosters")
+    .upload(imageName, imageFile);
+
+  /////////////////////////////////
+  /////////////////////////////////
+  // 3. SET THE EVENT POSTER BACK TO OLD IF THERE WAS ERROR UPLOADING EVENT POSTER
+  if (storageError) {
+    await supabase
+      .from("events")
+      .update({ image: currentImageSrc })
+      .eq("id", id)
+      .select();
+
+    throw new Error(
+      "There was an error updating the event poster:",
+      storageError
+    );
+  }
+
+  revalidatePath("/account/manage");
+  revalidatePath("/events");
+}
+
 export async function deleteEvent(eventId) {
   const { error } = await supabase.from("events").delete().eq("id", eventId);
 

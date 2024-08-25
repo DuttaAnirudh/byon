@@ -62,7 +62,7 @@ export default async function Page({ params }) {
         </p>
         <p className="font-light w-[75%]">{description}</p>
         <p className="font-semibold text-color-3 text-3xl pt-3 tracking-wider self-end">
-          ₹{price}/-
+          {price > 0 ? `₹${price}/-` : "FREE"}
         </p>
         {remainingPass < 25 && totalPass > 0 && (
           <p className="font-extralight text-sm text-color-1 uppercase self-end">

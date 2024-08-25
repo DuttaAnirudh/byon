@@ -21,22 +21,34 @@ export default async function GuestList({ eventId }) {
             {maxNumOfAttendees !== 0 ? `/ ${maxNumOfAttendees.totalPass}` : ""}
           </span>
         </p>
-        <Link
-          href={`/send-mail/guests/${eventId}`}
-          className="uppercase font-semibold py-1 px-3 border border-color-3 rounded-lg hover:bg-color-3 hover:text-color-1"
-        >
-          Mail All Attendees
-        </Link>
+        {bookings.length > 0 && (
+          <Link
+            href={`/send-mail/guests/${eventId}`}
+            className="uppercase font-semibold py-1 px-3 border border-color-3 rounded-lg hover:bg-color-3 hover:text-color-1"
+          >
+            Mail All Attendees
+          </Link>
+        )}
       </div>
-      <div className="grid grid-cols-[8rem_1fr_1fr_1fr] items-center justify-between w-full pl-3.5">
-        <h4 className="text-lg text-color-3 uppercase">BYON ID</h4>
-        <h4 className="text-lg text-color-3 uppercase">Customer Name</h4>
-        <h4 className="text-lg text-color-3 uppercase">Customer Email</h4>
-        <p>&nbsp;</p>
-      </div>
-      {bookings?.map((booking) => (
-        <GuestListItem booking={booking} key={booking.id} />
-      ))}
+      {bookings.length > 0 && (
+        <>
+          <div className="grid grid-cols-[8rem_1fr_1fr_1fr] items-center justify-between w-full pl-3.5">
+            <h4 className="text-lg text-color-3 uppercase">BYON ID</h4>
+            <h4 className="text-lg text-color-3 uppercase">Customer Name</h4>
+            <h4 className="text-lg text-color-3 uppercase">Customer Email</h4>
+            <p>&nbsp;</p>
+          </div>
+          {bookings?.map((booking) => (
+            <GuestListItem booking={booking} key={booking.id} />
+          ))}
+        </>
+      )}
+
+      {bookings.length === 0 && (
+        <p className="text-center self-center justify-self-center mt-16 text-3xl text-n-2/60">
+          You currently have 0 Attendees :(
+        </p>
+      )}
     </div>
   );
 }

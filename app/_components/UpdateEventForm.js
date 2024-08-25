@@ -132,9 +132,6 @@ function UpdateEventForm({ event }) {
           <UpdateFormButton>Update Event</UpdateFormButton>
         </div>
       </form>
-      <div className="self-end">
-        <DeleteEvent id={id} />
-      </div>
     </div>
   );
 }
