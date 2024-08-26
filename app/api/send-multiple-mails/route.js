@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const { mailData, grantId, subject, message, hostEmail } = await req.json();
-    console.log(mailData);
+
     const sentMessage = await nylas.messages.send({
       identifier: grantId,
       requestBody: {

@@ -7,8 +7,7 @@ function BookingButton({ session, event }) {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const recipientEmail = session.email;
-  const grantId = session.grantId;
+  const { grantId, userId, email: recipientEmail } = session;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +19,7 @@ function BookingButton({ session, event }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ recipientEmail, grantId, event }),
+      body: JSON.stringify({ recipientEmail, grantId, userId, event }),
     });
 
     const data = await response.json();

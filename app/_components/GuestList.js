@@ -23,10 +23,11 @@ export default async function GuestList({ eventId }) {
         </p>
         {bookings.length > 0 && (
           <Link
-            href={`/send-mail/guests/${eventId}`}
+            // href={`/send-mail/guests/${eventId}`}
+            href={`/send-mail?event=${eventId}`}
             className="uppercase font-semibold py-1 px-3 border border-color-3 rounded-lg hover:bg-color-3 hover:text-color-1"
           >
-            Mail All Attendees
+            Mail Options
           </Link>
         )}
       </div>

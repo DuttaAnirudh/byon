@@ -143,3 +143,17 @@ export async function userHasBooked(customerId) {
 
   return data;
 }
+
+export async function getScheduledMails(userId) {
+  const { data, error } = await supabase
+    .from("scheduledEmails")
+    .select("id, scheduleId, sendAt, subject, body")
+    .eq("userId", userId)
+    .order("sendAt", { ascending: false });
+
+  if (error) {
+    throw new Error("There was an error fetching scheduled emails");
+  }
+
+  return data;
+}

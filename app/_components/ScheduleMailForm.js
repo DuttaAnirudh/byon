@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SpinnerMini from "./SpinnerMini";
 
-function CustomMailForm({ mailData, session, eventId }) {
+function ScheduleMailForm({ mailData, session, eventId }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ function CustomMailForm({ mailData, session, eventId }) {
 
     setIsLoading(true);
 
-    const response = await fetch("/api/send-multiple-mails", {
+    const response = await fetch("/api/schedule-mail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,11 +87,11 @@ function CustomMailForm({ mailData, session, eventId }) {
                         : ""
                     }  transition-all `}
         >
-          {!isLoading ? "Send Message" : <SpinnerMini />}
+          {!isLoading ? "Schedule" : <SpinnerMini />}
         </button>
       </div>
     </form>
   );
 }
 
-export default CustomMailForm;
+export default ScheduleMailForm;
