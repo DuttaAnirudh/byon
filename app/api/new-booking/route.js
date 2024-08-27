@@ -1,6 +1,7 @@
 import { getUser } from "@/app/_lib/data-service";
 import { nylas } from "@/app/_lib/nylas"; // Ensure you've correctly set up and imported the Nylas SDK
 import { supabase } from "@/app/_lib/supabase";
+import { parseDateToTimestamp } from "@/app/_lib/utils";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
@@ -64,37 +65,6 @@ Great news—your pass for ${event.name} is confirmed! We're excited to have you
         body: bookingBody,
       },
     });
-
-    ////////////////////////////////////
-    ////////////////////////////////////
-    // SCEHDULE AN EMAIL FOR ONE DAY BEFORE THE EVENT
-    const sendEmailAt = 1724690581;
-
-    const sentScheduledMessage = await nylas.messages.send({
-      identifier: grantId,
-      requestBody: {
-        to: [{ name: user.fullName, email: recipientEmail }],
-        subject: "SCHEDULED TEST EMAIL",
-        body: "The event is tommorrow. \n Stay Ready",
-        send_at: sendEmailAt,
-      },
-    });
-
-    const { scheduleId, sendAt, subject, body, ...others } =
-      sentScheduledMessage.data;
-
-    const scheduledEmailData = { scheduleId, sendAt, subject, body, userId };
-
-    console.log(scheduledEmailData);
-
-    const { error: schedulingMailError } = await supabase
-      .from("scheduledEmails")
-      .insert([scheduledEmailData])
-      .select();
-
-    if (schedulingMailError) {
-      console.error(schedulingMailError);
-    }
 
     revalidatePath("/account/manage/guestlist");
 

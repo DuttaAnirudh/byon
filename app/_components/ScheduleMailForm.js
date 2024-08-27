@@ -6,7 +6,11 @@ import SpinnerMini from "./SpinnerMini";
 function ScheduleMailForm({ mailData, session, eventId }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { grantId, userId, email: hostEmail } = session;
 
   const emailList = mailData.map((item) => item.email).join(", ");
 
@@ -21,11 +25,14 @@ function ScheduleMailForm({ mailData, session, eventId }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        grantId,
+        userId,
+        hostEmail,
         mailData,
-        grantId: session.grantId,
         subject,
-        hostEmail: session.email,
         message,
+        date,
+        time,
       }),
     });
 
@@ -38,8 +45,8 @@ function ScheduleMailForm({ mailData, session, eventId }) {
     setIsLoading(false);
 
     if (response.ok) {
-      // Redirect to /account/manage/guestlist after successful booking
-      window.location.href = `/account/manage/guestlist/${eventId}`;
+      // Redirect to /send-email after successful booking
+      window.location.href = `/send-email?event=${eventId}`;
     }
   };
 
@@ -53,6 +60,41 @@ function ScheduleMailForm({ mailData, session, eventId }) {
           defaultValue={emailList}
           className="px-3 py-1 bg-n-1 text-black w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-n-1"
         />
+      </div>
+      <div className="flex items-center justify-start gap-8">
+        <div className="space-y-2 flex flex-col">
+          <label className="text-xl text-color-3">Date</label>
+          <input
+            required
+            type="date"
+            name="date"
+            defaultValue={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="w-[15rem] px-1 py-1.5 bg-n-1 text-black shadow-sm rounded-sm "
+          />
+        </div>
+
+        <div className="space-y-2 flex flex-col">
+          <label className="text-xl text-color-3" htmlFor="contact">
+            Time
+          </label>
+          <input
+            required
+            type="time"
+            name="time"
+            defaultValue={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="w-[15rem] px-1 py-1.5 bg-n-1 text-black shadow-sm rounded-sm "
+          />
+        </div>
+
+        <p className="font-light text-color-3 self-ceter">
+          Note: The Date & Time for scheduled email must be between{" "}
+          <span className="underline decoration-color-1 underline-offset-4 decoration-2 px-1">
+            2 minutes and 30 days
+          </span>{" "}
+          in the future.
+        </p>
       </div>
       <div className="space-y-2 grid grid-cols-[5rem_1fr] items-center">
         <label className="text-xl font-semibold text-color-3">Subject :</label>
@@ -68,7 +110,7 @@ function ScheduleMailForm({ mailData, session, eventId }) {
         <label className="text-xl font-semibold text-color-3">Message :</label>
         <textarea
           name="message"
-          rows="16"
+          rows="14"
           required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
