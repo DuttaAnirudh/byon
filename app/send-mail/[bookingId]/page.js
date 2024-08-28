@@ -3,8 +3,12 @@ import { useSession } from "@/app/_hooks/useSession";
 import { getBookingForEmail } from "@/app/_lib/data-service";
 
 export default async function Page({ params }) {
-  const mailData = await getBookingForEmail(params.bookingId);
   const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
+  const mailData = await getBookingForEmail(params.bookingId);
 
   return (
     <div>

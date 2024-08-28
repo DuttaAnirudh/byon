@@ -7,7 +7,7 @@ function ButtonFilter({ filter, handleFilter, activeFilter, children }) {
       className={`px-3  py-1 ${
         filter === activeFilter
           ? "bg-color-3 text-color-1"
-          : "hover:shadow-md hover:shadow-color-1/50"
+          : "hover:shadow-md hover:text-color-1"
       } hover:bg-primary-500 text-sm border border-color-3 rounded-full `}
     >
       {children}

@@ -4,8 +4,12 @@ import { useSession } from "@/app/_hooks/useSession";
 import { getHostedEventBookings } from "@/app/_lib/data-service";
 
 export default async function Page({ params, searchParams }) {
-  const bookingData = await getHostedEventBookings(params.eventId);
   const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
+  const bookingData = await getHostedEventBookings(params.eventId);
   const mailData = bookingData.map((booking) => {
     return { name: booking.customerName, email: booking.customerEmail };
   });

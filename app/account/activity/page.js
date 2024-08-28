@@ -11,6 +11,10 @@ export const metadata = {
 
 export default async function Page() {
   const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
   const bookings = await getBookings(session.userId);
 
   const futureBookings = bookings.filter((booking) =>

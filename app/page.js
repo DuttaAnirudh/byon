@@ -1,9 +1,9 @@
+import Header from "@/app/_components/Header";
 import partBear from "@/public/party-bear.jpg";
 import partWoman from "@/public/party-woman.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { dancingScript } from "./layout";
-import Header from "@/app/_components/Header";
 
 export default function Home() {
   return (

@@ -1,3 +1,4 @@
+import { useSession } from "@/app/_hooks/useSession";
 import Link from "next/link";
 
 export const metadata = {
@@ -5,6 +6,11 @@ export const metadata = {
 };
 
 export default function Page() {
+  const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
   return (
     <div className="text-lg font-light flex flex-col items-start justify-start gap-1 min-h-[70vh]">
       <h2 className="font-semibold text-3xl text-color-1 mb-2 ">

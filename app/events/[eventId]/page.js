@@ -13,6 +13,11 @@ export async function generateMetadata({ params }) {
 export const revalidate = 0;
 
 export default async function Page({ params }) {
+  const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
   const event = await getEvent(params.eventId);
   const {
     id,
@@ -28,7 +33,6 @@ export default async function Page({ params }) {
     hostId,
     description,
   } = event;
-  const session = useSession();
 
   // Checking if the user has already booked the event
   // If YES, not allowing the user to book the event again

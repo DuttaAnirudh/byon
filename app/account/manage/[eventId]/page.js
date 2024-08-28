@@ -12,7 +12,12 @@ export async function generateMetadata({ params }) {
 export const revalidate = 0;
 
 export default async function Page({ params }) {
-  const { userId } = useSession();
+  const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
+  const { userId } = session;
   const event = await getEvent(params.eventId);
 
   if (userId !== event.hostId) {

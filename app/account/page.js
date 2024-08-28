@@ -10,6 +10,10 @@ export const revalidate = 0;
 
 export default async function Page() {
   const session = useSession();
+  if (!session) {
+    throw new Error("You need to Log In");
+  }
+
   const user = await getUser(session.email);
 
   return (

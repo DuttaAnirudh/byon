@@ -13,6 +13,8 @@ export default function Middleware(request) {
     "/account",
     "/account/activity",
     "/new-event",
+    "/send-mail",
+    "/manage",
   ];
 
   // Check if the current path is one of the protected paths
@@ -31,5 +33,12 @@ export default function Middleware(request) {
 }
 
 export const config = {
-  matcher: ["/events", "/account", "/account/activity", "/new-event"],
+  matcher: [
+    "/events",
+    "/account",
+    "/account/activity",
+    "/send-mail",
+    "/new-event",
+    "/manage",
+  ],
 };
