@@ -33,6 +33,7 @@ function ScheduleMailForm({ mailData, session, eventId }) {
         message,
         date,
         time,
+        eventId,
       }),
     });
 
@@ -46,7 +47,7 @@ function ScheduleMailForm({ mailData, session, eventId }) {
 
     if (response.ok) {
       // Redirect to /send-email after successful booking
-      window.location.href = `/send-email?event=${eventId}`;
+      window.location.href = `/send-mail?event=${eventId}`;
     }
   };
 

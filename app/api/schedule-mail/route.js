@@ -1,6 +1,6 @@
 import { nylas } from "@/app/_lib/nylas";
 import { supabase } from "@/app/_lib/supabase";
-import { parseDateToTimestamp } from "@/app/_lib/utils";
+import { dateTimeToTimestamp } from "@/app/_lib/utils";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
@@ -14,13 +14,14 @@ export async function POST(req) {
     message,
     date,
     time,
+    eventId,
   } = await req.json();
   ////////////////////////////////////
   ////////////////////////////////////
   // SCEHDULE AN EMAIL FOR ONE DAY BEFORE THE EVENT
 
   // Getting the Timestamp for scheduling email
-  const sendEmailAt = parseDateToTimestamp(date, time);
+  const sendEmailAt = dateTimeToTimestamp(date, time);
   console.log(sendEmailAt);
 
   // Scheduling the email using nylas api
@@ -38,7 +39,14 @@ export async function POST(req) {
   const { scheduleId, sendAt, subject, body, ...others } =
     sentScheduledMessage.data;
 
-  const scheduledEmailData = { scheduleId, sendAt, subject, body, userId };
+  const scheduledEmailData = {
+    scheduleId,
+    sendAt,
+    subject,
+    body,
+    userId,
+    eventId,
+  };
 
   const { error } = await supabase
     .from("scheduledEmails")

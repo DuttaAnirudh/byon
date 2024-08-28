@@ -93,7 +93,7 @@ export async function getBookings(userId) {
 export async function getHostedEventBookings(eventId) {
   const { data, error } = await supabase
     .from("bookings")
-    .select("id, price, customerName, customerEmail, created_at")
+    .select("id, price, customerName, customerEmail, created_at, checkedIn")
     .eq("eventId", eventId);
 
   if (error) {
@@ -147,7 +147,7 @@ export async function userHasBooked(customerId) {
 export async function getScheduledMails(userId) {
   const { data, error } = await supabase
     .from("scheduledEmails")
-    .select("id, scheduleId, sendAt, subject, body")
+    .select("id, scheduleId, sendAt, subject, body, eventId")
     .eq("userId", userId)
     .order("sendAt", { ascending: false });
 

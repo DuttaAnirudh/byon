@@ -13,6 +13,9 @@ export const metadata = {
     default: "B.Y.O.N",
   },
   description: "One Stop for your Next YOLO",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export const revalidate = 0;

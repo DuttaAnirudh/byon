@@ -30,6 +30,7 @@ export async function POST(req) {
       price: event.price,
       eventName: event.name,
       eventDate: event.date,
+      eventTime: event.time,
       city: event.city,
       location: event.location,
       eventId: event.id,

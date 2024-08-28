@@ -1,6 +1,25 @@
 /////////////////////////////////////
 /////////////////////////////////////
 // CONVERT DATE & TIME TO UNIX TIMESTAMP(SECONDS)
+export function dateTimeToTimestamp(dateStr, timeStr) {
+  // Split the date string into parts (a format - 'YYYY-MM-DD')
+  const [year, month, day] = dateStr.split("-").map(Number);
+
+  // Split the time string into parts ( format - 'HH:mm')
+  const [hours, minutes] = timeStr.split(":").map(Number);
+
+  // Create a new Date object using the provided date and time 
+  const date = new Date(year, month - 1, day, hours, minutes, 0);
+
+  // Get the Unix timestamp in seconds (divide by 1000 to convert from milliseconds)
+  const timestamp = Math.floor(date.getTime() / 1000);
+
+  return timestamp;
+}
+
+/////////////////////////////////////
+/////////////////////////////////////
+// CONVERT DATE TO PREVIOUS DAY UNIX TIMESTAMP(SECONDS)
 export function parseDateToTimestamp(dateStr) {
   // Spliting the date string into parts (assuming the format is 'YYYY-MM-DD')
   const [year, month, day] = dateStr.split("-").map(Number);

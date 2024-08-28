@@ -215,3 +215,18 @@ export async function deleteBooking(formData) {
 
   revalidatePath("/account/manage");
 }
+
+export async function checkInAttendee(formData) {
+  const bookingId = formData.get("bookingId");
+
+  const { error } = await supabase
+    .from("bookings")
+    .update({ checkedIn: true })
+    .eq("id", bookingId);
+
+  if (error) {
+    throw new Error("There was an error checking in the attendee");
+  }
+
+  revalidatePath("/account/manage");
+}
