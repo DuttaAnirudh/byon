@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   // Create a response object to redirect the user
-  const response = NextResponse.redirect("http://localhost:3000/");
+  const response = NextResponse.redirect(process.env.NEXT_PUBLIC_HOME_URL);
 
   // Clear the 'nylasAuth' and 'nylasSession' cookies
   response.cookies.set("nylasAuth", "", {

@@ -38,7 +38,7 @@ export async function GET(request) {
 
     // Create a response object
     const newResponse = NextResponse.redirect(
-      "http://localhost:3000/auth/success"
+      process.env.NEXT_PUBLIC_AUTH_SUCCESS_URL
     );
 
     // Set the token in a secure HTTP-only cookie
@@ -62,6 +62,6 @@ export async function GET(request) {
     return newResponse;
   } catch (error) {
     console.error(error);
-    return NextResponse.redirect("http://localhost:3000/login");
+    return NextResponse.redirect(process.env.NEXT_PUBLIC_LOGIN_URL);
   }
 }
