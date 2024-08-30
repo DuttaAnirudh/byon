@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { accountLinks } from "../_lib/constant";
-import SignOutButton from "./SignOutButton";
 import { logout } from "@/app/_lib/actions";
 
 function SideNavigation() {
@@ -34,7 +33,6 @@ function SideNavigation() {
               Sign Out
             </button>
           </form>
-          {/* <SignOutButton /> */}
         </div>
       </ul>
     </nav>
