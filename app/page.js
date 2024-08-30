@@ -30,6 +30,7 @@ export default function Home() {
           <Image
             src={partWoman}
             alt="Party Woman"
+            quality={80}
             fill
             className="object-cover object-center"
           />
@@ -38,6 +39,7 @@ export default function Home() {
           <Image
             src={partBear}
             alt="Party Bear"
+            quality={80}
             fill
             className="object-cover object-center"
           />
