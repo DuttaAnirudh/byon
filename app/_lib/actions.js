@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { supabase } from "./supabase";
+import { cookies } from "next/headers";
 
 // UPDATING GUEST PROFILE DATA IN DB
 export async function updateUserProfile(formData) {
@@ -229,4 +230,13 @@ export async function checkInAttendee(formData) {
   }
 
   revalidatePath("/account/manage");
+}
+
+export async function logout() {
+  cookies().delete("nylasAuth");
+  cookies().delete("nylasSession");
+
+  revalidatePath("/");
+
+  redirect("/");
 }
