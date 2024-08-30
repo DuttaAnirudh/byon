@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { accountLinks } from "../_lib/constant";
+import SignOutButton from "./SignOutButton";
 
 function SideNavigation() {
   const pathname = usePathname();
@@ -27,12 +28,7 @@ function SideNavigation() {
         ))}
 
         <div className="mt-auto">
-          <Link
-            href="/api/auth/logout"
-            className="text-color-1 uppercase text-lg border-b-2 border-transparent hover:border-color-3 transition-all"
-          >
-            Sign out
-          </Link>
+          <SignOutButton />
         </div>
       </ul>
     </nav>
