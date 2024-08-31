@@ -25,12 +25,12 @@ export default async function EventsList({ filter }) {
     eventsList = futureEvents?.filter((event) => event.city === "Mumbai");
   }
   if (filter === "bangalore") {
-    eventsList = futureEvents?.filter((event) => event.city === "Banglore");
+    eventsList = futureEvents?.filter((event) => event.city === "Bangalore");
   }
 
   return (
     <div
-      className="grid justify-start items-end gap-x-16 gap-y-6 w-full"
+      className="grid justify-center items-end gap-x-16 gap-y-6 w-full"
       style={{
         gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 12rem))",
       }}

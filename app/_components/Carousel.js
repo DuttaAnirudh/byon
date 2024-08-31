@@ -25,7 +25,6 @@ function Carousel({ event }) {
         <Image
           src={image}
           fill
-          quality={60}
           alt={`${name} poster`}
           className="object-cover"
         />
